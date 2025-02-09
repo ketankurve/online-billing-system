@@ -191,12 +191,15 @@ if not os.path.exists('bills'):
 
 # Defining the save_bill function.
 # This function saves the bill to a text file.
-
-billnumber=random.randint(500,1000)
+def generate_bill_number():
+    global billnumber
+    billnumber = random.randint(500,1000)
+generate_bill_number()
 
 def save_bill():
     
-    global billnumber  # Using the global keyword to access the global billnumber variable.
+    global current_bill_number 
+    current_bill_number = billnumber # Using the global keyword to access the global billnumber variable.
     # Displaying a pop-up message asking the user if they want to save the bill.
     result = messagebox.askyesno('Confirm', 'Do you want to save bill?')
     if result:
@@ -206,7 +209,7 @@ def save_bill():
         file.write(bill_content) # Writing the bill content to the file.
         file.close()
         messagebox.showinfo('Saved',f'Bill no. {billnumber} saved successfully')
-        billnumber=random.randint(500,1000) # Generating a new random number for the next bill.
+ # Generating a new random number for the next bill.
 def bill_area():
     if nameEntry.get()=='' or phoneEntry.get()=='':
         messagebox.showerror('Error','Customer Details Are Required')
